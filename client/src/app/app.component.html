@@ -47,20 +47,29 @@
 
   </div>
 
-  <table mdbTable>
-    <thead class="black white-text">
-      <tr>
-        <th *ngFor="let head of headElements" scope="col">{{head}} </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr mdbTableCol *ngFor="let el of elements">
-        <th scope="row">{{el.id}}</th>
-        <td>{{el.name}}</td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="col-sm-12">
+    <table>
+      <thead class="black white-text">
+        <tr>
+          <th *ngFor="let head of headElements" scope="col">{{head}} </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let el of elements">
+          <th scope="row">{{el.idColleghi}}</th>
+          <td>{{el.nome}}</td>
+          <td>{{el.cognome}}</td>
+          <td>{{el.telefono}}</td>
+          <td>{{el.email}}</td>
+        </tr>
+      </tbody>
+    </table>
 
+    <div class="col-sm-12" style="text-align: right">
+      <button type="button" class="btn btn-primary" (click)="addCollega()">Aggiungi collega</button>
+    </div>
+
+  </div>
 
   <svg id="clouds" xmlns="http://www.w3.org/2000/svg" width="2611.084" height="485.677" viewBox="0 0 2611.084 485.677">
     <title>Gray Clouds Background</title>
