@@ -1,10 +1,11 @@
+
 package it.unicas.server.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import it.unicas.server.dao.ColleghiDAO;
@@ -17,16 +18,11 @@ public class ColleghiController {
   private ColleghiDAO colleghiDAO;
 
   @PostMapping(path="/add") // Map ONLY POST Requests
-  public @ResponseBody String addNewUser (@RequestParam String name
-      , @RequestParam String email) {
+  public @ResponseBody Iterable<Colleghi> addNewUser(@RequestBody Colleghi collega) {
     // @ResponseBody means the returned String is the response, not a view name
     // @RequestParam means it is a parameter from the GET or POST request
-
-    Colleghi n = new Colleghi();
-    n.setNome(name);
-    n.setEmail(email);
-    colleghiDAO.save(n);
-    return "Saved";
+    colleghiDAO.save(collega);
+    return colleghiDAO.findAll();
   }
 
   @GetMapping(path="/all")

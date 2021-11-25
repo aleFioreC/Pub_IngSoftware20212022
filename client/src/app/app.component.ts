@@ -10,7 +10,7 @@ export class AppComponent {
 
   title = 'client';
 
-  headElements = ['id', 'name'];
+  headElements = ['idColleghi', 'nome', 'cognome', 'telefono', 'email'];
 
   elements: any[] = [];
 
@@ -21,6 +21,23 @@ export class AppComponent {
     this.service.getProducts().subscribe((res: any) => {
       console.log(res)
       this.elements = res
+    })
+  }
+
+  addCollega() {
+    let collega = {
+      id_colleghi: 1,
+      nome: 'Alessio',
+      cognome: 'Fiore',
+      telefono: '0000000',
+      email: 'test@test.com'
+    }
+    this.service.addProduct(collega).subscribe((res: any) => {
+      console.log(res)
+      this.service.getProducts().subscribe((res: any) => {
+        console.log(res)
+        this.elements = res
+      })
     })
   }
 }
