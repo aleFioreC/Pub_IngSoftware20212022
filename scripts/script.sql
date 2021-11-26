@@ -11,5 +11,12 @@ INSERT INTO `amici`.`tipologia_tavolo` (`id_tipologia_tavolo`, `tipologia`) VALU
 INSERT INTO `amici`.`tipologia_tavolo` (`id_tipologia_tavolo`, `tipologia`) VALUES ('2', 'Esterno');
 
 INSERT INTO `amici`.`utente` (`id_utente`, `cognome`, `nome`, `password`, `username`, `tipologia_ruolo_id_ruolo`) VALUES ('1', 'admin', 'admin', 'admin', 'admin', '1');
+INSERT INTO `amici`.`utente` (`id_utente`, `cognome`, `nome`, `password`, `username`, `tipologia_ruolo_id_ruolo`) VALUES ('2', 'cameriere', 'cameriere', 'cameriere', 'cameriere', '2');
+INSERT INTO `amici`.`utente` (`id_utente`, `cognome`, `nome`, `password`, `username`, `tipologia_ruolo_id_ruolo`) VALUES ('3', 'barista', 'barista', 'barista', 'barista', '3');
+INSERT INTO `amici`.`utente` (`id_utente`, `cognome`, `nome`, `password`, `username`, `tipologia_ruolo_id_ruolo`) VALUES ('4', 'cuoco', 'cuoco', 'cuoco', 'cuoco', '4');
 
-COMMIT;
+INSERT INTO `amici`.`tavolo` (`id_tavolo`, `numero`, `tipologia_tavolo_id_tipologia_tavolo`) VALUES ('1', '1', '1');
+INSERT INTO `amici`.`tavolo` (`id_tavolo`, `numero`, `tipologia_tavolo_id_tipologia_tavolo`) VALUES ('2', '2', '2');
+INSERT INTO `amici`.`tavolo` (`id_tavolo`, `numero`, `tipologia_tavolo_id_tipologia_tavolo`) VALUES ('3', '3', '2');
+
+COMMIT;utente

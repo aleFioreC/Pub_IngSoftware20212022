@@ -5,6 +5,8 @@ Passaggi da eseguire per l'installazione:
 
 Clone da git
 
+Aprire la cartella scripts e lanciare lo script.sql
+
 Aprire la cartella client all'interno di VSCode:
 
 1) npm install
@@ -54,22 +56,9 @@ Sequenza principale degli eventi:
 4. il cameriere chiude l’ordine;
 5. il sistema aggiorna lo stato dell’ordine a ‘InPreparazione’.
 
-Caso d’uso: Preparazione
-Breve descrizione: Registrazione della preparazione del vassoio.
-Attore principale: Preparatore.
-Attori secondari: Cameriere.
-Precondizioni: Ordine in attesa.
-Postcondizioni: Ordine in attesa consegna.
-Sequenza principale degli eventi:
-1. Il preparatore richiama il prossimo ordine da preparare;
-2. while (ci sono consumazioni non pronte)
-2.1. una volta pronta, il prpearatore marca la consumazione come tale nell’ordine;
-3. il sistema aggiorna lo stato dell’ordine a 'AttesaConsegna', e lo segnala al Cameriere.
-Sequenza alternativa degli eventi: ArticoloMancante.
-
 Caso d’uso: Consegna
 Breve descrizione: Registrazione della consegna delle ordinazioni.
-Attore principale: Cameriere.
+Attore principale: Barista / Cuoco.
 Attori secondari: NA
 Precondizioni: Ordine in attesa consegna.
 Postcondizioni: Ordine conseganto.

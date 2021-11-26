@@ -12,8 +12,12 @@ export class GeneralService {
         return this.httpClient.get('/api/all');
     }
 
-    addProduct(body: any) {
-        return this.httpClient.post('/api/add', body);
+    login(body: any) {
+        return this.httpClient.post('/api/login', body);
+    }
+
+    getTavoli() {
+        return this.httpClient.get('/api/allTavoli');
     }
 
 }
