@@ -19,4 +19,6 @@ public class TavoloController {
   public @ResponseBody Iterable<Tavolo> getAllTavoli() {
     return tavoloDAO.findAll();
   }
+
+
 }

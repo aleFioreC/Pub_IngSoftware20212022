@@ -1,0 +1,10 @@
+INSERT INTO `amici`.`menu` (`id_menu`, `descrizione`,`id_tipologia_consumazione`) VALUES ('1', 'Big Mac','1');
+INSERT INTO `amici`.`menu` (`id_menu`, `descrizione`,`id_tipologia_consumazione`) VALUES ('2', 'Gran McChicken','1');
+INSERT INTO `amici`.`menu` (`id_menu`, `descrizione`,`id_tipologia_consumazione`) VALUES ('3', 'My Selection BBQ','1');
+INSERT INTO `amici`.`menu` (`id_menu`, `descrizione`,`id_tipologia_consumazione`) VALUES ('4', 'Crispy McBacon','1');
+INSERT INTO `amici`.`menu` (`id_menu`, `descrizione`,`id_tipologia_consumazione`) VALUES ('5', 'Coca Cola','3');
+INSERT INTO `amici`.`menu` (`id_menu`, `descrizione`,`id_tipologia_consumazione`) VALUES ('6', 'Fanta','3');
+INSERT INTO `amici`.`menu` (`id_menu`, `descrizione`,`id_tipologia_consumazione`) VALUES ('7', 'Sprite','3');
+INSERT INTO `amici`.`menu` (`id_menu`, `descrizione`,`id_tipologia_consumazione`) VALUES ('8', 'Acqua','3');
+INSERT INTO `amici`.`menu` (`id_menu`, `descrizione`,`id_tipologia_consumazione`) VALUES ('9', 'Birra','2');
+INSERT INTO `amici`.`menu` (`id_menu`, `descrizione`,`id_tipologia_consumazione`) VALUES ('10', 'Vino','2');

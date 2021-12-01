@@ -7,12 +7,14 @@ import { FormsModule } from '@angular/forms';
 import { HomepageComponent } from './pages/homepage/homepage.component';
 import { LoginComponent } from './pages/login/login.component';
 import { SpinnerCircularModule } from 'spinners-angular/spinner-circular';
+import { TableComponent } from './pages/table/table.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomepageComponent,
-    LoginComponent
+    LoginComponent,
+    TableComponent
   ],
   imports: [
     BrowserModule,

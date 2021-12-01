@@ -20,4 +20,8 @@ export class GeneralService {
         return this.httpClient.get('/api/allTavoli');
     }
 
+    getMenu(){
+        return this.httpClient.get('/api/menuItems');
+    }
+
 }

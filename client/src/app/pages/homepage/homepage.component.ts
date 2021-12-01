@@ -3,6 +3,7 @@ import { Location } from '@angular/common';
 import { GeneralService } from 'src/app/services/general.service';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
@@ -12,6 +13,7 @@ export class HomepageComponent implements OnInit {
 
   utente: any;
   tavoli: any[] = []
+  numeroTavolo: any;
 
   constructor(private location: Location, private service: GeneralService, private router: Router) {
   }
@@ -25,6 +27,18 @@ export class HomepageComponent implements OnInit {
 
   esci() {
     this.router.navigate(['/'])
+  }
+
+  showDetails(user: string, numTavolo : number){
+    this.numeroTavolo = numTavolo;
+    if (user === "cameriere") 
+    {
+      this.router.navigate(['/table',{tableNumber: this.numeroTavolo}]);
+    }
+    else
+    {
+      this.router.navigate(['/']);
+    }
   }
 
 }
