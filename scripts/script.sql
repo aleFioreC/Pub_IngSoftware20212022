@@ -1,6 +1,6 @@
-INSERT INTO `amici`.`tipologia_consumazione` (`id_tipologia_consumazione`, `tipologia`) VALUES ('1', 'Snack');
-INSERT INTO `amici`.`tipologia_consumazione` (`id_tipologia_consumazione`, `tipologia`) VALUES ('2', 'Bevanda');
-INSERT INTO `amici`.`tipologia_consumazione` (`id_tipologia_consumazione`, `tipologia`) VALUES ('3', 'Bevanda Analcolica');
+INSERT INTO `amici`.`tipologia_consumazione` (`id_tipologia_consumazione`, `tipologia`, `prezzo`) VALUES ('1', 'Snack', 50);
+INSERT INTO `amici`.`tipologia_consumazione` (`id_tipologia_consumazione`, `tipologia`, `prezzo`) VALUES ('2', 'Bevanda', 20);
+INSERT INTO `amici`.`tipologia_consumazione` (`id_tipologia_consumazione`, `tipologia`, `prezzo`) VALUES ('3', 'Bevanda Analcolica',, 20);
 
 INSERT INTO `amici`.`tipologia_ruolo` (`id_ruolo`, `tipologia`) VALUES ('1', 'Admin');
 INSERT INTO `amici`.`tipologia_ruolo` (`id_ruolo`, `tipologia`) VALUES ('2', 'Cameriere');
@@ -19,4 +19,4 @@ INSERT INTO `amici`.`tavolo` (`id_tavolo`, `numero`, `tipologia_tavolo_id_tipolo
 INSERT INTO `amici`.`tavolo` (`id_tavolo`, `numero`, `tipologia_tavolo_id_tipologia_tavolo`) VALUES ('2', '2', '2');
 INSERT INTO `amici`.`tavolo` (`id_tavolo`, `numero`, `tipologia_tavolo_id_tipologia_tavolo`) VALUES ('3', '3', '2');
 
-COMMIT;utente
+COMMIT;

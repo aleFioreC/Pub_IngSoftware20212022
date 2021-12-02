@@ -11,15 +11,15 @@ import javax.persistence.ManyToOne;
 public class Consumazione {
 
 	@Id
-	 @GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idConsumazione;
 
-    @ManyToOne
+	@ManyToOne
 	private TipologiaConsumazione tipologiaConsumazione;
 
-    @ManyToOne
-    @JoinColumn(name="id_ordine")
-    private Ordine ordine;
+	@ManyToOne
+	@JoinColumn(name = "id_ordine")
+	private Ordine ordine;
 
 	public Integer getIdConsumazione() {
 		return idConsumazione;
