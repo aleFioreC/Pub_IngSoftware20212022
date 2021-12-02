@@ -1,0 +1,67 @@
+<nav class="navbar bg-danger">
+    <span class="navbar-brand h3" style="color: whitesmoke">Utente {{utente.nome}}</span>
+    <button type="button" class="btn btn-light" (click)="logout()">Logout</button>
+</nav>
+
+
+<div class="row">
+
+    <div class="col-sm-6 myContainer">
+        <span class="navbar-brand h3 ml-2" style="color: whitesmoke">Prodotti</span>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Prezzo</th>
+                    <th scope="col">Azioni</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let consumazione of consumazioni; index as i">
+                    <th scope="row">{{ i + 1 }}</th>
+                    <td>
+                        {{ consumazione.tipologia }}
+                    </td>
+                    <td>{{ consumazione.prezzo | number }}</td>
+                    <td>
+                        <button type="button" class="btn btn-light" (click)="addProduct(consumazione)">+</button>
+                        <button type="button" class="btn btn-danger ml-2"
+                            (click)="removeProduct(consumazione, i)">-</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-sm-6 myContainer">
+        <span class="navbar-brand h3" style="color: whitesmoke">Ordine</span>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Prezzo</th>
+                    <th scope="col">Quantità</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let consumazione of consumazioniOrdinate; index as i">
+                    <th scope="row">{{ i + 1 }}</th>
+                    <td>
+                        {{ consumazione.tipologia }}
+                    </td>
+                    <td>{{ consumazione.prezzo | number }}</td>
+                    <td><button type="button" class="btn btn-danger">{{consumazione.quantita}}</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<div class="row col-sm-12 mt-2">
+    <div class="col-sm-4">
+        <button type="button" class="btn btn-light">Invia ordine</button>
+    </div>
+</div>

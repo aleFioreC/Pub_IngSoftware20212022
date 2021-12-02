@@ -20,4 +20,11 @@ export class GeneralService {
         return this.httpClient.get('/api/allTavoli');
     }
 
+    getTavolo(id: string) {
+        return this.httpClient.get('/api/getTavolo/' + id);
+    }
+
+    getConsumazioni() {
+        return this.httpClient.get('api/allTipologieConsumazioni')
+    }
 }
