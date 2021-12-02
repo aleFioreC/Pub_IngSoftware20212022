@@ -42,7 +42,7 @@ public class ConsumazioneController {
 
 	/* BARISTA E CUOCO */
 	@GetMapping(path = "/getConsumazioniByIdTavolo/{idTavolo}")
-	public @ResponseBody List<Consumazione> getConsumazioni(@PathVariable int idTavolo) {
+	public @ResponseBody Iterable<Consumazione> getConsumazioni(@PathVariable int idTavolo) {
 		Ordine ordine = null;
 		List<Consumazione> consumazioni = new ArrayList<Consumazione>();
 		Optional<Tavolo> tavolo = this.tavoloDAO.findById(idTavolo);

@@ -11,7 +11,7 @@ import it.unicas.server.model.Tavolo;
 
 public interface OrdineDAO extends CrudRepository<Ordine, Integer> {
 
-	@Query("FROM Ordine o WHERE o.tavolo = ?1 AND o.statoOrdine = 'Inviato'")
+	@Query("FROM Ordine o WHERE o.tavolo = ?1 AND o.statoOrdine = 'Eseguito'")
 	Ordine findByTavolo(Tavolo tavolo);
 	
 }

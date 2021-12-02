@@ -14,7 +14,6 @@ public class TipologiaConsumazione {
 
 	private String tipologia;
 
-	private int prezzo;
 	
 	public Integer getIdTipologiaConsumazione() {
 		return idTipologiaConsumazione;
@@ -31,14 +30,4 @@ public class TipologiaConsumazione {
 	public void setTipologia(String tipologia) {
 		this.tipologia = tipologia;
 	}
-
-	public int getPrezzo() {
-		return prezzo;
-	}
-
-	public void setPrezzo(int prezzo) {
-		this.prezzo = prezzo;
-	}
-	
-
 }

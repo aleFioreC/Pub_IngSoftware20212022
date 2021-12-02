@@ -8,6 +8,9 @@
   top: calc(50vh - 20px);
 }
 
+.navbar {
+  background-color: rgba(178,34,34,0.75)
+}
 .spinner>div {
   z-index: 999;
   background-color: black;

@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity // This tells Hibernate to make a table out of this class
 public class Consumazione {
 
@@ -15,8 +17,9 @@ public class Consumazione {
 	private Integer idConsumazione;
 
 	@ManyToOne
-	private TipologiaConsumazione tipologiaConsumazione;
+	private Menu menu;
 
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "id_ordine")
 	private Ordine ordine;
@@ -29,12 +32,12 @@ public class Consumazione {
 		this.idConsumazione = idConsumazione;
 	}
 
-	public TipologiaConsumazione getTipologiaConsumazione() {
-		return tipologiaConsumazione;
+	public Menu getMenu() {
+		return menu;
 	}
 
-	public void setTipologiaConsumazione(TipologiaConsumazione tipologiaConsumazione) {
-		this.tipologiaConsumazione = tipologiaConsumazione;
+	public void setMenu(Menu menu) {
+		this.menu = menu;
 	}
 
 	public Ordine getOrdine() {

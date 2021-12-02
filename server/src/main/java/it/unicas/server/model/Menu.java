@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity // This tells Hibernate to make a table out of this class
@@ -14,9 +13,10 @@ public class Menu {
     private Integer idMenu;
 
     private String descrizione;
+    
+	private int prezzo;
 
     @ManyToOne
-    @JoinColumn(name="id_tipologia_consumazione")
     private TipologiaConsumazione tipologiaConsumazione;
 
     public Integer getIdMenu() {
@@ -35,7 +35,15 @@ public class Menu {
         this.descrizione = descrizione;
     }
 
-    public TipologiaConsumazione getTipologiaConsumazione() {
+    public int getPrezzo() {
+		return prezzo;
+	}
+
+	public void setPrezzo(int prezzo) {
+		this.prezzo = prezzo;
+	}
+
+	public TipologiaConsumazione getTipologiaConsumazione() {
         return tipologiaConsumazione;
     }
 
