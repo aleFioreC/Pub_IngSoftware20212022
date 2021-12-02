@@ -27,4 +27,9 @@ export class GeneralService {
     getConsumazioni() {
         return this.httpClient.get('api/allTipologieConsumazioni')
     }
+  
+    getMenu(){
+        return this.httpClient.get('/api/menuItems');
+    }
+
 }

@@ -3,6 +3,7 @@ import { Location } from '@angular/common';
 import { GeneralService } from 'src/app/services/general.service';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
@@ -16,6 +17,7 @@ export class HomepageComponent implements OnInit {
   admin: boolean = false
   cameriere: boolean = false
   barista: boolean = false
+  numeroTavolo: any;
 
   constructor(private location: Location, private service: GeneralService, private router: Router) {
   }
@@ -56,4 +58,17 @@ export class HomepageComponent implements OnInit {
   dettaglio(tavolo: any) {
     this.router.navigate(['/dettaglioCameriere/' + tavolo.idTavolo], { state: this.utente })
   }
+
+  showDetails(user: string, numTavolo : number){
+    this.numeroTavolo = numTavolo;
+    if (user === "cameriere") 
+    {
+      this.router.navigate(['/table',{tableNumber: this.numeroTavolo}]);
+    }
+    else
+    {
+      this.router.navigate(['/']);
+    }
+  }
+
 }

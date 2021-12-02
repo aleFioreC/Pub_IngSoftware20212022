@@ -11,6 +11,7 @@ import { DettaglioCameriereComponent } from './pages/dettaglio-cameriere/dettagl
 import { DettaglioBaristaComponent } from './pages/dettaglio-barista/dettaglio-barista.component';
 import { DettaglioCuocoComponent } from './pages/dettaglio-cuoco/dettaglio-cuoco.component';
 import { DettaglioAdminComponent } from './pages/dettaglio-admin/dettaglio-admin.component';
+import { TableComponent } from './pages/table/table.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { DettaglioAdminComponent } from './pages/dettaglio-admin/dettaglio-admin
     DettaglioBaristaComponent,
     DettaglioCuocoComponent,
     DettaglioAdminComponent
+    TableComponent
   ],
   imports: [
     BrowserModule,

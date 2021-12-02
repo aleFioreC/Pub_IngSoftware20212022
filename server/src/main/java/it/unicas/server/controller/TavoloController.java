@@ -27,4 +27,5 @@ public class TavoloController {
   public @ResponseBody Optional<Tavolo> getAllTavoli(@PathVariable String id) {
     return tavoloDAO.findById(Integer.valueOf(id));
   }
+
 }

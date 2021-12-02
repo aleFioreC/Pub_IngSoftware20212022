@@ -14,6 +14,13 @@
                         <span style="text-align: center; color:white"> {{element.tipologiaTavolo.tipologia}}</span>
                     </div>
                 </div>
+<div class="d-flex justify-content-center form_container">
+    <div class="col-sm-12  row">
+        <span style="text-align: center; color:white; font-size: 24px"> Tavoli</span>
+        <div class="col-sm-12 row mt-3">
+            <div class="user_card" *ngFor="let element of tavoli" (click)="showDetails(utente.nome, element.numero)">
+                <span style="text-align: center; color:white"> {{element.numero}}</span>
+                <span style="text-align: center; color:white"> {{element.tipologiaTavolo.tipologia}}</span>
             </div>
         </div>
     </div>
