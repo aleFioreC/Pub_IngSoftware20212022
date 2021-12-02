@@ -1,1 +1,107 @@
-<p>dettaglio-admin works!</p>
+<nav class="navbar">
+    <span class="navbar-brand h3" style="color: whitesmoke">Utente {{utente.nome}}</span>
+    <div class="align-right">
+        <button type="button" class="btn btn-light mr-2" (click)="back()">Indietro</button>
+        <button type="button" class="btn btn-light" (click)="logout()">Logout</button>
+    </div>
+</nav>
+
+<div class="container">
+    <header class="header">
+        <h1 id="title" class="text-center">Inserimento ordine tavolo: {{numTavolo}}</h1>
+    </header>
+    <form>
+
+        <input type="hidden" [(ngModel)]="numTavolo" name="numTavoloHid" />
+
+        <h2 class="text-center">PRIMI E SECONDI</h2>
+        <hr />
+        <div class="form-group row">
+            <div class="col-sm-8">
+                <label for="descrizione" class="col-form-label">Descrizione</label>
+            </div>
+            <div class="col-sm-2">
+                <label for="prezzo" class="col-form-label">Prezzo</label>
+            </div>
+            <div class="col-sm-2">
+                <label for="quantita" class="col-form-label">Quantita</label>
+            </div>
+        </div>
+        <div>
+            <div class="form-group row" *ngFor="let element of getItems(1)">
+                <div class="col-sm-8">
+                    <label for="{{element.idMenu}}" class="col-form-label">{{element.descrizione}}</label>
+                </div>
+                <div class="col-sm-2">
+                    <label for="{{element.idMenu}}" class="col-form-label">{{element.prezzo}}</label>
+                </div>
+                <div class="col-sm-2">
+                    <input type="number" id="{{element.idMenu}}" name="{{element.descrizione}}" min="0" max="50"
+                        value="0" class="form-control" />
+                </div>
+            </div>
+        </div>
+
+
+        <h2 class="text-center">BEVANDE ALCOLICHE</h2>
+        <hr />
+        <div class="form-group row">
+            <div class="col-sm-8">
+                <label for="descrizione" class="col-form-label">Descrizione</label>
+            </div>
+            <div class="col-sm-2">
+                <label for="prezzo" class="col-form-label">Prezzo</label>
+            </div>
+            <div class="col-sm-2">
+                <label for="quantita" class="col-form-label">Quantita</label>
+            </div>
+        </div>
+        <div>
+            <div class="form-group row" *ngFor="let element of getItems(2)">
+                <div class="col-sm-8">
+                    <label for="{{element.idMenu}}" class="col-form-label">{{element.descrizione}}</label>
+                </div>
+                <div class="col-sm-2">
+                    <label for="{{element.idMenu}}" class="col-form-label">{{element.prezzo}}</label>
+                </div>
+                <div class="col-sm-2">
+                    <input type="number" id="{{element.idMenu}}" name="{{element.descrizione}}" min="0" max="50"
+                        value="0" class="form-control" />
+                </div>
+            </div>
+        </div>
+
+        <h2 class="text-center">BEVANDE ANALCOLICHE</h2>
+        <hr />
+        <div class="form-group row">
+            <div class="col-sm-8">
+                <label for="descrizione" class="col-form-label">Descrizione</label>
+            </div>
+            <div class="col-sm-2">
+                <label for="prezzo" class="col-form-label">Prezzo</label>
+            </div>
+            <div class="col-sm-2">
+                <label for="quantita" class="col-form-label">Quantita</label>
+            </div>
+        </div>
+        <div class="form-group row" *ngFor="let element of getItems(3)">
+            <div class="col-sm-8">
+                <label for="{{element.idMenu}}" class="col-form-label">{{element.descrizione}}</label>
+            </div>
+            <div class="col-sm-2">
+                <label for="{{element.idMenu}}" class="col-form-label">{{element.prezzo}}</label>
+            </div>
+            <div class="col-sm-2">
+                <input type="number" id="{{element.idMenu}}" name="{{element.descrizione}}" min="0" max="50" value="0"
+                    class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" id="submit" class="submit-button">
+                Inserisci
+            </button>
+        </div>
+    </form>
+
+</div>

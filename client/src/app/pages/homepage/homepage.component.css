@@ -1,6 +1,10 @@
 .form_container {
     margin-top: 50px;
 }
+
+.navbar {
+  background-color: rgba(178,34,34,0.75)
+}
   .user_card {
     cursor: pointer;
     height: 200px;

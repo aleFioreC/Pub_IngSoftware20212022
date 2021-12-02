@@ -2,18 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { GeneralService } from 'src/app/services/general.service';
-
-
-export class Consumazione {
-  tipologia: string;
-  prezzo: number;
-  quantita: number;
-  constructor(tipologia: string, prezzo: number, quantita: number) {
-    this.tipologia = tipologia
-    this.prezzo = prezzo
-    this.quantita = quantita
-  }
-}
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from 'src/app/shared/dialog/dialog.component';
 
 @Component({
   selector: 'app-dettaglio-cameriere',
@@ -22,18 +12,27 @@ export class Consumazione {
 })
 export class DettaglioCameriereComponent implements OnInit {
 
-  consumazioni: any[] = []
-  consumazioniOrdinate: any[] = []
-  data: any;
-  utente: any
+  public numTavolo: any;
+  public products: any = [];
+  utente: any;
+  tavolo: any
+  name: any;
+  color: any;
 
-  constructor(private route: ActivatedRoute, private location: Location, private router: Router, private service: GeneralService) { }
+  constructor(public dialog: MatDialog, private location: Location, private route: ActivatedRoute, private router: Router, private service: GeneralService) {
+  }
 
   ngOnInit(): void {
-    this.data = this.route.snapshot.data;
+    this.numTavolo = this.route.snapshot.paramMap.get('id');
+    this.service.getTavolo(this.numTavolo).subscribe((res: any) => {
+      this.tavolo = res
+    })
     this.utente = this.location.getState();
-    this.service.getConsumazioni().subscribe((res: any) => {
-      this.consumazioni = res
+    this.service.getMenu().subscribe((res: any) => {
+      this.products = res
+      this.products.forEach((element: any) => {
+        element.quantita = 0
+      });
     })
   }
 
@@ -41,26 +40,47 @@ export class DettaglioCameriereComponent implements OnInit {
     this.router.navigate(['/'])
   }
 
-  addProduct(consumazione: any) {
-    if (this.consumazioniOrdinate.filter(elemento => elemento.tipologia == consumazione.tipologia)[0]) {
-      this.consumazioniOrdinate.filter(elemento => elemento.tipologia == consumazione.tipologia)[0].quantita += 1
-      this.consumazioniOrdinate.filter(elemento => elemento.tipologia == consumazione.tipologia)[0].prezzo = consumazione.prezzo * this.consumazioniOrdinate.filter(elemento => elemento.tipologia == consumazione.tipologia)[0].quantita
-    } else {
-      let consumazioneToAdd = new Consumazione(consumazione.tipologia, consumazione.prezzo, 0)
-      consumazioneToAdd.quantita += 1
-      consumazioneToAdd.prezzo = consumazione.prezzo * consumazioneToAdd.quantita
-      this.consumazioniOrdinate.push(consumazioneToAdd)
-    }
+  back() {
+    this.router.navigate(['/private'])
   }
 
-  removeProduct(consumazione: any, index: number) {
-    if (this.consumazioniOrdinate.filter(elemento => elemento.tipologia == consumazione.tipologia)[0]) {
-      this.consumazioniOrdinate.filter(elemento => elemento.tipologia == consumazione.tipologia)[0].quantita -= 1
-      this.consumazioniOrdinate.filter(elemento => elemento.tipologia == consumazione.tipologia)[0].prezzo = consumazione.prezzo * this.consumazioniOrdinate.filter(elemento => elemento.tipologia == consumazione.tipologia)[0].quantita
+  getItems(id: number) {
+    return this.products.filter((item: any) => item.tipologiaConsumazione.idTipologiaConsumazione == id);
+  }
+
+  inserisciOrdine() {
+    let list: any[] = []
+    this.products.forEach((element: any) => {
+      while (element.quantita > 0) {
+        element.quantita -= 1
+        let object: any = {}
+        object.idConsumazione = 0
+        object.ordine = null
+        object.menu = element
+        list.push(object)
+      }
+    });
+    let ordine = {
+      consumazioni: list,
+      statoOrdine: 'Eseguito',
+      tavolo: this.tavolo
     }
-    if (this.consumazioniOrdinate.filter(elemento => elemento.tipologia == consumazione.tipologia)[0].quantita == 0) {
-      this.consumazioniOrdinate.splice(index, 1)
-    }
+    console.log(ordine)
+    this.service.inserisciOrdine(ordine).subscribe((res: any) => {
+      console.log(res)
+      this.openDialog()
+    })
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '450px',
+      data: { name: this.name, color: this.color }
+    });
+
+    dialogRef.afterClosed().subscribe((res: any) => {
+      this.color = res;
+    });
   }
 
 }

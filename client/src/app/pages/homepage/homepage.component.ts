@@ -13,10 +13,6 @@ export class HomepageComponent implements OnInit {
 
   utente: any;
   tavoli: any[] = []
-  cuoco: boolean = false
-  admin: boolean = false
-  cameriere: boolean = false
-  barista: boolean = false
   numeroTavolo: any;
 
   constructor(private location: Location, private service: GeneralService, private router: Router) {
@@ -24,7 +20,6 @@ export class HomepageComponent implements OnInit {
 
   ngOnInit(): void {
     this.utente = this.location.getState();
-    this.getRuoloUtente()
     this.service.getTavoli().subscribe((res: any) => {
       this.tavoli = res
     })
@@ -34,39 +29,21 @@ export class HomepageComponent implements OnInit {
     this.router.navigate(['/'])
   }
 
-  getRuoloUtente() {
-    switch (this.utente.tipologiaRuolo.tipologia) {
-      case 'Admin': {
-        this.admin = true;
-        break;
-      }
-      case 'Cuoco': {
-        this.cuoco = true;
-        break;
-      }
-      case 'Cameriere': {
-        this.cameriere = true;
-        break;
-      }
-      case 'Barista': {
-        this.barista = true;
-        break;
-      }
-    }
-  }
-
-  dettaglio(tavolo: any) {
-    this.router.navigate(['/dettaglioCameriere/' + tavolo.idTavolo], { state: this.utente })
-  }
-
-  showDetails(user: string, numTavolo : number){
+  showDetails(user: string, numTavolo: number) {
     this.numeroTavolo = numTavolo;
-    if (user === "cameriere") 
-    {
-      this.router.navigate(['/table',{tableNumber: this.numeroTavolo}]);
+    if (user === "cameriere") {
+      this.router.navigate(['/dettaglioCameriere/' + this.numeroTavolo], { state: this.utente });
     }
-    else
-    {
+    else if (user === "cuoco") {
+      this.router.navigate(['/dettaglioCuoco/' + this.numeroTavolo], { state: this.utente });
+    }
+    else if (user === "admin") {
+      this.router.navigate(['/dettaglioAdmin/' + this.numeroTavolo], { state: this.utente });
+    }
+    else if (user === "barista") {
+      this.router.navigate(['/dettaglioBarista/' + this.numeroTavolo], { state: this.utente });
+    }
+    else {
       this.router.navigate(['/']);
     }
   }

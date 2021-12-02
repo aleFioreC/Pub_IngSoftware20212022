@@ -1,19 +1,8 @@
-<nav class="navbar bg-danger">
+<nav class="navbar">
     <span class="navbar-brand h3" style="color: whitesmoke">Utente {{utente.nome}}</span>
     <button type="button" class="btn btn-light" (click)="logout()">Logout</button>
 </nav>
 
-<ng-template [ngIf]="admin">
-    <div>
-        <div class="d-flex justify-content-center form_container">
-            <div class="col-sm-12  row">
-                <span style="text-align: center; color:white; font-size: 24px"> Tavoli</span>
-                <div class="col-sm-12 row mt-3">
-                    <div class="user_card" *ngFor="let element of tavoli" (click)="dettaglio(element)">
-                        <span style="text-align: center; color:white"> {{element.numero}}</span>
-                        <span style="text-align: center; color:white"> {{element.tipologiaTavolo.tipologia}}</span>
-                    </div>
-                </div>
 <div class="d-flex justify-content-center form_container">
     <div class="col-sm-12  row">
         <span style="text-align: center; color:white; font-size: 24px"> Tavoli</span>
@@ -24,52 +13,4 @@
             </div>
         </div>
     </div>
-</ng-template>
-
-<ng-template [ngIf]="cameriere">
-    <div>
-        <div class="d-flex justify-content-center form_container">
-            <div class="col-sm-12  row">
-                <span style="text-align: center; color:white; font-size: 24px"> Tavoli</span>
-                <div class="col-sm-12 row mt-3">
-                    <div class="user_card" *ngFor="let element of tavoli">
-                        <span style="text-align: center; color:white"> {{element.numero}}</span>
-                        <span style="text-align: center; color:white"> {{element.tipologiaTavolo.tipologia}}</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</ng-template>
-
-<ng-template [ngIf]="cuoco">
-    <div>
-        <div class="d-flex justify-content-center form_container">
-            <div class="col-sm-12  row">
-                <span style="text-align: center; color:white; font-size: 24px"> Tavoli</span>
-                <div class="col-sm-12 row mt-3">
-                    <div class="user_card" *ngFor="let element of tavoli">
-                        <span style="text-align: center; color:white"> {{element.numero}}</span>
-                        <span style="text-align: center; color:white"> {{element.tipologiaTavolo.tipologia}}</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</ng-template>
-
-<ng-template [ngIf]="barista">
-    <div>
-        <div class="d-flex justify-content-center form_container">
-            <div class="col-sm-12  row">
-                <span style="text-align: center; color:white; font-size: 24px"> Tavoli</span>
-                <div class="col-sm-12 row mt-3">
-                    <div class="user_card" *ngFor="let element of tavoli">
-                        <span style="text-align: center; color:white"> {{element.numero}}</span>
-                        <span style="text-align: center; color:white"> {{element.tipologiaTavolo.tipologia}}</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</ng-template>
+</div>

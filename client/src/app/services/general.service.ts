@@ -24,12 +24,20 @@ export class GeneralService {
         return this.httpClient.get('/api/getTavolo/' + id);
     }
 
+    getConsumazioniByTavolo(idTavolo: string) {
+        return this.httpClient.get('/api/getConsumazioniByIdTavolo/' + idTavolo);
+    }
+
     getConsumazioni() {
         return this.httpClient.get('api/allTipologieConsumazioni')
     }
-  
-    getMenu(){
+
+    getMenu() {
         return this.httpClient.get('/api/menuItems');
+    }
+
+    inserisciOrdine(body: any) {
+        return this.httpClient.post('/api/inserisciOrdine', body);
     }
 
 }
