@@ -32,12 +32,27 @@ export class GeneralService {
         return this.httpClient.get('api/allTipologieConsumazioni')
     }
 
+    getTipologieStatoOrdine() {
+        return this.httpClient.get('api/allTipologieStatoOrdine')
+    }
+
     getMenu() {
         return this.httpClient.get('/api/menuItems');
+    }
+
+    getOrdine(idTavolo: number) {
+        return this.httpClient.get('/api/getOrdineByTavolo/' + idTavolo);
     }
 
     inserisciOrdine(body: any) {
         return this.httpClient.post('/api/inserisciOrdine', body);
     }
 
+    inviaPagamento(body: any, idTipologiaPagamento: string) {
+        return this.httpClient.post('/api/inviaPagamento/' + idTipologiaPagamento, body);
+    }
+
+    consegnaProdotto(body: any) {
+        return this.httpClient.post('/api/consegnaProdotto', body);
+    }
 }

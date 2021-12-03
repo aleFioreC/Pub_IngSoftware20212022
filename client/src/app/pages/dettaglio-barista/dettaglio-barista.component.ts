@@ -21,7 +21,6 @@ export class DettaglioBaristaComponent implements OnInit {
     this.numTavolo = this.route.snapshot.paramMap.get('id');
     this.utente = this.location.getState();
     this.service.getConsumazioniByTavolo(this.numTavolo).subscribe((res: any) => {
-      console.log(res)
       this.products = res
     })
   }
@@ -31,12 +30,14 @@ export class DettaglioBaristaComponent implements OnInit {
   }
 
   back() {
-    this.router.navigate(['/private'])
+    this.router.navigate(['/private'], { state: this.utente })
   }
 
   getItems(id: number) {
     return this.products.filter((item: any) => item.menu.tipologiaConsumazione.idTipologiaConsumazione == id);
   }
 
-
+  consegnaBevande() {
+    console.log(this.products[0].ordine)
+  }
 }

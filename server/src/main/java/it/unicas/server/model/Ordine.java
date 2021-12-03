@@ -2,7 +2,12 @@ package it.unicas.server.model;
 
 import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity // This tells Hibernate to make a table out of this class
 public class Ordine {
@@ -17,10 +22,10 @@ public class Ordine {
 	@ManyToOne
 	private Tavolo tavolo;
 
-	private Float totalePagamento;
+	private float totalePagamento;
 
 	@ManyToOne
-	private  TipologiaPagamento tipologiaPagamento;
+	private TipologiaPagamento tipologiaPagamento;
 
 	@OneToMany(mappedBy = "ordine")
 	private List<Consumazione> consumazioni;
@@ -55,6 +60,22 @@ public class Ordine {
 
 	public void setConsumazioni(List<Consumazione> consumazioni) {
 		this.consumazioni = consumazioni;
+	}
+
+	public float getTotalePagamento() {
+		return totalePagamento;
+	}
+
+	public void setTotalePagamento(float totalePagamento) {
+		this.totalePagamento = totalePagamento;
+	}
+
+	public TipologiaPagamento getTipologiaPagamento() {
+		return tipologiaPagamento;
+	}
+
+	public void setTipologiaPagamento(TipologiaPagamento tipologiaPagamento) {
+		this.tipologiaPagamento = tipologiaPagamento;
 	}
 
 }
