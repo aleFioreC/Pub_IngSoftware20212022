@@ -14,6 +14,7 @@ export class DettaglioCameriereComponent implements OnInit {
 
   public numTavolo: any;
   public products: any = [];
+  public tipologiaStatoOrdine: any = [];
   utente: any;
   tavolo: any
   name: any;
@@ -26,6 +27,9 @@ export class DettaglioCameriereComponent implements OnInit {
     this.numTavolo = this.route.snapshot.paramMap.get('id');
     this.service.getTavolo(this.numTavolo).subscribe((res: any) => {
       this.tavolo = res
+    })
+    this.service.getTipologieStatoOrdine().subscribe((res: any) => {
+      this.tipologiaStatoOrdine = res
     })
     this.utente = this.location.getState();
     this.service.getMenu().subscribe((res: any) => {
@@ -41,7 +45,7 @@ export class DettaglioCameriereComponent implements OnInit {
   }
 
   back() {
-    this.router.navigate(['/private'])
+    this.router.navigate(['/private'], { state: this.utente })
   }
 
   getItems(id: number) {
@@ -62,12 +66,10 @@ export class DettaglioCameriereComponent implements OnInit {
     });
     let ordine = {
       consumazioni: list,
-      statoOrdine: 'Eseguito',
+      statoOrdine: this.tipologiaStatoOrdine.filter((elemento: any) => elemento.idStatoOrdine == 1)[0],
       tavolo: this.tavolo
     }
-    console.log(ordine)
     this.service.inserisciOrdine(ordine).subscribe((res: any) => {
-      console.log(res)
       this.openDialog()
     })
   }
@@ -75,7 +77,7 @@ export class DettaglioCameriereComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '450px',
-      data: { utente: this.utente, color: this.color }
+      data: { utente: this.utente, color: this.color, tavolo: this.numTavolo }
     });
 
     dialogRef.afterClosed().subscribe((res: any) => {

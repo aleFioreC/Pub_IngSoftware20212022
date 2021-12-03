@@ -26,6 +26,10 @@ export class HomepageComponent implements OnInit {
     })
   }
 
+  getDisponibilita(tavolo: number) {
+    return tavolo == 0 ? 'Libero' : 'Occupato'
+  }
+
   logout() {
     this.router.navigate(['/'])
   }

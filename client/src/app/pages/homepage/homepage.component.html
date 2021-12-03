@@ -10,7 +10,8 @@
             <div class="user_card" *ngFor="let element of tavoli" (click)="showDetails(utente.nome, element.numero)">
                 <span style="text-align: center; color:white"> {{element.numero}}</span>
                 <span style="text-align: center; color:white"> {{element.tipologiaTavolo.tipologia}}</span>
+                <span *ngIf="element.occupato == 0" class="circle"></span>
+                <span *ngIf="element.occupato == 1" class="circle_red"></span>
             </div>
         </div>
     </div>
-</div>

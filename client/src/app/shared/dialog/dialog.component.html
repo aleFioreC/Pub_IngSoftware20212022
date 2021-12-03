@@ -5,32 +5,39 @@
     </div>
 </div>
 
-<div *ngIf="(data.utente.nome==='admin')">
+<div *ngIf="(data.utente.nome==='admin' && data.color)">
+    <h1 mat-dialog-title>Operazione effettuata con successo</h1>
+    <div mat-dialog-content>
+        <p>Pagamento effettuato, arrivederci</p>
+    </div>
+</div>
+
+<div *ngIf="(data.utente.nome==='admin' && !data.color)">
     <h1 mat-dialog-title class="text-center">PAGAMENTO TAVOLO - {{data.tavolo}}</h1>
     <hr />
     <br />
     <div mat-dialog-content>
         <div>
-        <h1 class="text-center">Totale: &euro; {{data.totale}},00</h1>
-        <br />
-        <hr />
-        
-        <div class="form-group">
-            <p class="h4">Seleziona metodo di pagamento</p>
-            <label>
-              <input name="modalitaPagamento" value="0" type="radio" class="input-radio" />Contanti</label
-            >
-            <label>
-              <input name="modalitaPagamento" value="1" type="radio" class="input-radio"/>Bancomat</label
-            >
+            <h1 class="text-center">Totale: &euro; {{data.totale}},00</h1>
+            <br />
+            <hr />
+
+            <div class="form-group">
+                <p class="h4">Seleziona metodo di pagamento</p>
+                <label>
+                    <input name="modalitaPagamento" value="1" type="radio" class="input-radio"
+                        [(ngModel)]="pagamento" />Contanti</label>
+                <label>
+                    <input name="modalitaPagamento" value="2" type="radio" class="input-radio"
+                        [(ngModel)]="pagamento" />Bancomat</label>
+            </div>
+
+            <hr />
+            <div class="form-group">
+                <button class="submit-button" (click)="inviaPagamento()">
+                    Invia Pagamento
+                </button>
+            </div>
         </div>
-        
-        <hr />
-        <div class="form-group">
-            <button class="submit-button" >
-                Invia Pagamento
-            </button>
-        </div>
+
     </div>
-    
-</div>

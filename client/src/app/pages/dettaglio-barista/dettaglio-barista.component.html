@@ -21,7 +21,7 @@
                 <label for="prezzo" class="col-form-label">Prezzo</label>
             </div>
         </div>
-        <div>
+        <div *ngIf="getItems(2).length > 0">
             <div class="form-group row" *ngFor="let element of getItems(2)">
                 <div class="col-sm-8">
                     <label for="{{element.idMenu}}" class="col-form-label">{{element.menu.descrizione}}</label>
@@ -29,6 +29,11 @@
                 <div class="col-sm-2">
                     <label for="{{element.idMenu}}" class="col-form-label">&euro; {{element.menu.prezzo}},00</label>
                 </div>
+            </div>
+        </div>
+        <div *ngIf="getItems(2).length == 0">
+            <div class="form-group row">
+                Nessun risultato
             </div>
         </div>
         <h2 class="text-center">BEVANDE ANALCOLICHE</h2>
@@ -41,16 +46,24 @@
                 <label for="prezzo" class="col-form-label">Prezzo</label>
             </div>
         </div>
-        <div class="form-group row" *ngFor="let element of getItems(3)">
-            <div class="col-sm-8">
-                <label for="{{element.idMenu}}" class="col-form-label">{{element.menu.descrizione}}</label>
+        <div *ngIf="getItems(3).length > 0">
+            <div class="form-group row" *ngFor="let element of getItems(3)">
+                <div class="col-sm-8">
+                    <label for="{{element.idMenu}}" class="col-form-label">{{element.menu.descrizione}}</label>
+                </div>
+                <div class="col-sm-2">
+                    <label for="{{element.idMenu}}" class="col-form-label">&euro; {{element.menu.prezzo}},00</label>
+                </div>
             </div>
-            <div class="col-sm-2">
-                <label for="{{element.idMenu}}" class="col-form-label">&euro; {{element.menu.prezzo}},00</label>
+        </div>
+        <div *ngIf="getItems(3).length > 0">
+            <div class="form-group row">
+                Nessun risultato
             </div>
         </div>
         <div class="form-group">
-            <button type="submit" id="submit" class="submit-button">
+            <button type="submit" id="submit" class="submit-button"
+                *ngIf="getItems(2).length > 0 || getItems(3).length > 0">
                 Consegna bevande
             </button>
         </div>

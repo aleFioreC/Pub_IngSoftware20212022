@@ -13,7 +13,7 @@ public class TipologiaStatoOrdine {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idStatoOrdine;
 
-    private String Descrizione;
+    private String descrizione;
 
     public Integer getIdStatoOrdine() {
         return idStatoOrdine;
@@ -23,11 +23,11 @@ public class TipologiaStatoOrdine {
         this.idStatoOrdine = idStatoOrdine;
     }
 
-    public String getDescrizione() {
-        return Descrizione;
-    }
+	public String getDescrizione() {
+		return descrizione;
+	}
 
-    public void setDescrizione(String descrizione) {
-        Descrizione = descrizione;
-    }
+	public void setDescrizione(String descrizione) {
+		this.descrizione = descrizione;
+	}
 }

@@ -44,4 +44,12 @@ public class Tavolo {
 		this.numero = numero;
 	}
 
+	public int getOccupato() {
+		return occupato;
+	}
+
+	public void setOccupato(int occupato) {
+		this.occupato = occupato;
+	}
+
 }
