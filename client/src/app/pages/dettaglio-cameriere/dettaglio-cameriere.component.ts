@@ -75,7 +75,7 @@ export class DettaglioCameriereComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '450px',
-      data: { name: this.name, color: this.color }
+      data: { utente: this.utente, color: this.color }
     });
 
     dialogRef.afterClosed().subscribe((res: any) => {

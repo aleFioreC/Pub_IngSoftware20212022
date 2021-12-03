@@ -15,6 +15,7 @@ export class HomepageComponent implements OnInit {
   tavoli: any[] = []
   numeroTavolo: any;
 
+
   constructor(private location: Location, private service: GeneralService, private router: Router) {
   }
 

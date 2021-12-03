@@ -31,12 +31,29 @@ public class OrdineController {
 	private ConsumazioneDAO consumazioneDAO;
 
 	@PostMapping(path = "/inserisciOrdine")
-	public @ResponseBody boolean saveOrdine(@RequestBody Ordine ordine) {
-		Ordine ordineSave = ordineDAO.save(ordine);
-		for (Consumazione consumazione : ordine.getConsumazioni()) {
-			consumazione.setOrdine(ordineSave);
-			consumazioneDAO.save(consumazione);
+	public @ResponseBody boolean saveOrdine(@RequestBody Ordine ordine)
+	{
+
+		//check se è già presente un ordine con uno stato diverso da 'Pagato' per quel determinato tavolo,
+		// se presente si recupera idOrdine e si fa insert in consumazioni con lo stesso idOrdine, altrimenti si fa insert in ordine e consumazioni
+		if (ordineDAO.checkOrder(ordine.getTavolo().getNumero())>0)
+		{
+			Integer idOrdine = ordineDAO.getIdOrdine(ordine.getTavolo().getNumero());
+			for (Consumazione consumazione : ordine.getConsumazioni()) {
+				 consumazione.setOrdine(ordine);
+				 ordine.setIdOrdine(idOrdine);
+				consumazioneDAO.save(consumazione);
+			}
 		}
+		else
+		{
+			Ordine ordineSave = ordineDAO.save(ordine);
+			for (Consumazione consumazione : ordine.getConsumazioni()) {
+				consumazione.setOrdine(ordineSave);
+				consumazioneDAO.save(consumazione);
+			}
+		}
+
 		return true;
 	}
 

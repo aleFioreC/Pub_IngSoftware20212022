@@ -24,6 +24,13 @@ public class Consumazione {
 	@JoinColumn(name = "id_ordine")
 	private Ordine ordine;
 
+	@ManyToOne
+	private TipologiaStatoOrdine statoConsumazione;
+
+	public TipologiaStatoOrdine getStatoConsumazione() {
+		return statoConsumazione;
+	}
+
 	public Integer getIdConsumazione() {
 		return idConsumazione;
 	}
@@ -47,5 +54,7 @@ public class Consumazione {
 	public void setOrdine(Ordine ordine) {
 		this.ordine = ordine;
 	}
+
+	public void setId(int id){this.ordine.setIdOrdine(id); }
 
 }

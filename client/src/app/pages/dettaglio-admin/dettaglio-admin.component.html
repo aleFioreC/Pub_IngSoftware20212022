@@ -8,7 +8,7 @@
 
 <div class="container">
     <header class="header">
-        <h1 id="title" class="text-center">Inserimento ordine tavolo: {{numTavolo}}</h1>
+        <h1 id="title" class="text-center">Elaborazione Pagamento tavolo: {{numTavolo}}</h1>
     </header>
     <form>
 
@@ -23,21 +23,14 @@
             <div class="col-sm-2">
                 <label for="prezzo" class="col-form-label">Prezzo</label>
             </div>
-            <div class="col-sm-2">
-                <label for="quantita" class="col-form-label">Quantita</label>
-            </div>
         </div>
         <div>
             <div class="form-group row" *ngFor="let element of getItems(1)">
                 <div class="col-sm-8">
-                    <label for="{{element.idMenu}}" class="col-form-label">{{element.descrizione}}</label>
+                    <label for="{{element.idMenu}}" class="col-form-label">{{element.menu.descrizione}}</label>
                 </div>
                 <div class="col-sm-2">
-                    <label for="{{element.idMenu}}" class="col-form-label">{{element.prezzo}}</label>
-                </div>
-                <div class="col-sm-2">
-                    <input type="number" id="{{element.idMenu}}" name="{{element.descrizione}}" min="0" max="50"
-                        value="0" class="form-control" />
+                    <label for="{{element.idMenu}}" class="col-form-label">&euro; {{element.menu.prezzo}},00</label>
                 </div>
             </div>
         </div>
@@ -52,21 +45,14 @@
             <div class="col-sm-2">
                 <label for="prezzo" class="col-form-label">Prezzo</label>
             </div>
-            <div class="col-sm-2">
-                <label for="quantita" class="col-form-label">Quantita</label>
-            </div>
         </div>
         <div>
             <div class="form-group row" *ngFor="let element of getItems(2)">
                 <div class="col-sm-8">
-                    <label for="{{element.idMenu}}" class="col-form-label">{{element.descrizione}}</label>
+                    <label for="{{element.idMenu}}" class="col-form-label">{{element.menu.descrizione}}</label>
                 </div>
                 <div class="col-sm-2">
-                    <label for="{{element.idMenu}}" class="col-form-label">{{element.prezzo}}</label>
-                </div>
-                <div class="col-sm-2">
-                    <input type="number" id="{{element.idMenu}}" name="{{element.descrizione}}" min="0" max="50"
-                        value="0" class="form-control" />
+                    <label for="{{element.idMenu}}" class="col-form-label">&euro; {{element.menu.prezzo}},00</label>
                 </div>
             </div>
         </div>
@@ -80,28 +66,23 @@
             <div class="col-sm-2">
                 <label for="prezzo" class="col-form-label">Prezzo</label>
             </div>
-            <div class="col-sm-2">
-                <label for="quantita" class="col-form-label">Quantita</label>
-            </div>
         </div>
         <div class="form-group row" *ngFor="let element of getItems(3)">
             <div class="col-sm-8">
-                <label for="{{element.idMenu}}" class="col-form-label">{{element.descrizione}}</label>
+                <label for="{{element.idMenu}}" class="col-form-label">{{element.menu.descrizione}}</label>
             </div>
             <div class="col-sm-2">
-                <label for="{{element.idMenu}}" class="col-form-label">{{element.prezzo}}</label>
-            </div>
-            <div class="col-sm-2">
-                <input type="number" id="{{element.idMenu}}" name="{{element.descrizione}}" min="0" max="50" value="0"
-                    class="form-control" />
-            </div>
+                <label for="{{element.idMenu}}" class="col-form-label">&euro; {{element.menu.prezzo}},00</label>
+            </div> 
         </div>
 
         <div class="form-group">
-            <button type="submit" id="submit" class="submit-button">
-                Inserisci
+            <button class="submit-button" (click)="openDialog()" >
+                Elabora Pagamento
             </button>
         </div>
+
+       
     </form>
 
 </div>

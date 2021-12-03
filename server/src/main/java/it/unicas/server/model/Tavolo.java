@@ -18,6 +18,8 @@ public class Tavolo {
 	@ManyToOne
 	private TipologiaTavolo tipologiaTavolo;
 
+	private int occupato;
+
 	public Integer getIdTavolo() {
 		return idTavolo;
 	}
