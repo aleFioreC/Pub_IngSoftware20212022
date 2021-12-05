@@ -23,6 +23,9 @@
             <div class="col-sm-2">
                 <label for="prezzo" class="col-form-label">Prezzo</label>
             </div>
+            <div class="col-sm-2">
+                <label for="quantita" class="col-form-label">Quantità</label>
+            </div>
         </div>
         <div>
             <div class="form-group row" *ngFor="let element of getItems(1)">
@@ -31,6 +34,9 @@
                 </div>
                 <div class="col-sm-2">
                     <label for="{{element.idMenu}}" class="col-form-label">&euro; {{element.menu.prezzo}},00</label>
+                </div>
+                <div class="col-sm-2">
+                    <label for="{{element.idMenu}}" class="col-form-label">{{getOccurrence(element.menu.idMenu)}}</label>
                 </div>
             </div>
         </div>
@@ -45,6 +51,9 @@
             <div class="col-sm-2">
                 <label for="prezzo" class="col-form-label">Prezzo</label>
             </div>
+            <div class="col-sm-2">
+                <label for="quantita" class="col-form-label">Quantità</label>
+            </div>            
         </div>
         <div>
             <div class="form-group row" *ngFor="let element of getItems(2)">
@@ -53,6 +62,9 @@
                 </div>
                 <div class="col-sm-2">
                     <label for="{{element.idMenu}}" class="col-form-label">&euro; {{element.menu.prezzo}},00</label>
+                </div>
+                <div class="col-sm-2">
+                    <label for="{{element.idMenu}}" class="col-form-label">{{getOccurrence(element.menu.idMenu)}}</label>
                 </div>
             </div>
         </div>
@@ -66,6 +78,9 @@
             <div class="col-sm-2">
                 <label for="prezzo" class="col-form-label">Prezzo</label>
             </div>
+            <div class="col-sm-2">
+                <label for="quantita" class="col-form-label">Quantità</label>
+            </div>
         </div>
         <div class="form-group row" *ngFor="let element of getItems(3)">
             <div class="col-sm-8">
@@ -73,7 +88,10 @@
             </div>
             <div class="col-sm-2">
                 <label for="{{element.idMenu}}" class="col-form-label">&euro; {{element.menu.prezzo}},00</label>
-            </div> 
+            </div>
+            <div class="col-sm-2">
+                <label for="{{element.idMenu}}" class="col-form-label">{{getOccurrence(element.menu.idMenu)}}</label>
+            </div>  
         </div>
 
         <div class="form-group">

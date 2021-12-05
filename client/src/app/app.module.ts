@@ -14,6 +14,8 @@ import { TableComponent } from './shared/table/table.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './angular.material.module';
 import { DialogComponent } from './shared/dialog/dialog.component';
+import { ListaOrdinazioniComponent } from './pages/lista-ordinazioni/lista-ordinazioni.component';
+import { DataTablesModule } from "angular-datatables";
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { DialogComponent } from './shared/dialog/dialog.component';
     DettaglioCuocoComponent,
     DettaglioAdminComponent,
     TableComponent,
-    DialogComponent
+    DialogComponent,
+    ListaOrdinazioniComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +36,8 @@ import { DialogComponent } from './shared/dialog/dialog.component';
     HttpClientModule,
     AngularMaterialModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    DataTablesModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [],

@@ -7,6 +7,7 @@ import { DettaglioCameriereComponent } from './pages/dettaglio-cameriere/dettagl
 import { DettaglioCuocoComponent } from './pages/dettaglio-cuoco/dettaglio-cuoco.component';
 import { DettaglioBaristaComponent } from './pages/dettaglio-barista/dettaglio-barista.component';
 import { CameriereResolver } from './resolver/cameriere.resolver';
+import { ListaOrdinazioniComponent } from './pages/lista-ordinazioni/lista-ordinazioni.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'dettaglioCuoco/:id', component: DettaglioCuocoComponent },
   { path: 'dettaglioBarista/:id', component: DettaglioBaristaComponent },
   { path: 'dettaglioAdmin/:id', component: DettaglioAdminComponent },
+  { path: 'listaOrdinazioni', component: ListaOrdinazioniComponent },
 ];
 
 @NgModule({

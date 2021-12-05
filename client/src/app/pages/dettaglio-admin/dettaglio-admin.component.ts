@@ -5,6 +5,7 @@ import { Location } from '@angular/common';
 import { DialogComponent } from 'src/app/shared/dialog/dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 
+
 @Component({
   selector: 'app-dettaglio-admin',
   templateUrl: './dettaglio-admin.component.html',
@@ -16,10 +17,12 @@ export class DettaglioAdminComponent implements OnInit {
 
   public numTavolo: any;
   public products: any = [];
+  public listaFiltered: any = [];
   utente: any;
   tavolo: any;
   color: any;
   totale: any;
+
 
   constructor(public dialog: MatDialog, private location: Location, private route: ActivatedRoute, private router: Router, private service: GeneralService) {
   }
@@ -27,7 +30,7 @@ export class DettaglioAdminComponent implements OnInit {
   ngOnInit(): void {
     this.numTavolo = this.route.snapshot.paramMap.get('id');
     this.utente = this.location.getState();
-    this.service.getConsumazioniByTavolo(this.numTavolo).subscribe((res: any) => {
+    this.service.getConsumazioniByTavoloAdmin(this.numTavolo).subscribe((res: any) => {
       this.products = res
     })
   }
@@ -41,8 +44,25 @@ export class DettaglioAdminComponent implements OnInit {
   }
 
   getItems(id: number) {
-    return this.products.filter((item: any) => item.menu.tipologiaConsumazione.idTipologiaConsumazione == id);
+    var listaFiltrata = this.products.filter((item: any) => item.menu.tipologiaConsumazione.idTipologiaConsumazione == id);
+    
+    this.listaFiltered = listaFiltrata;  
+    var result = listaFiltrata.reduce((unique: any, o: any) => {
+      if(!unique.some(((obj: any) => obj.menu.idmenu === o.menu.idmenu && obj.menu.descrizione ===o.menu.descrizione ))) {
+        unique.push(o);
+      }
+      return unique;
+  },[]);
+    return result
   }
+
+  
+  getOccurrence(value :any) {
+    var list = this.products
+    var count = list.filter((item: any) => item.menu.idMenu==value).length
+    return count;
+}
+
 
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogComponent, {
@@ -69,6 +89,7 @@ export class DettaglioAdminComponent implements OnInit {
 
     return contoTotale;
   }
+  
 
   openDialogConfirm(): void {
     const dialogRef = this.dialog.open(DialogComponent, {
@@ -78,8 +99,11 @@ export class DettaglioAdminComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((res: any) => {
       this.color = res;
+      this.back();
     });
   }
+
+  
 
 
 }

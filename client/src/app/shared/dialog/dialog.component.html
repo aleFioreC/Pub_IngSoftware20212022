@@ -1,4 +1,4 @@
-<div *ngIf="(data.utente.nome==='cameriere')">
+<div *ngIf="(data.utente.nome==='cameriere' && this.data.color)">
     <h1 mat-dialog-title>Operazione effettuata con successo</h1>
     <div mat-dialog-content>
         <p>Ordine inviato</p>
@@ -39,5 +39,55 @@
                 </button>
             </div>
         </div>
-
     </div>
+</div>
+
+
+<!-- DIV ALERT CAMERIERE QUANDO UN ORDINE VIENE ELABORATO DALLA CUCINA E/O DAL BAR -->
+<div *ngIf="(data.utente.nome==='cameriere' && this.showModal)">
+    <h1 mat-dialog-title class="text-center">Nuovo Ordine Elaborato</h1>
+    <br />
+    <hr />
+    <div mat-dialog-content>
+        <div class="form-group">
+            <button class="submit-button" (click)="showLista()">
+                Vai alla lista degli ordini
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- DIV ALERT CUOCO E BARISTA QUANDO UN ORDINE VIENE INVIATO DAL CAMERIERE -->
+<div *ngIf="((data.utente.nome==='cuoco' || data.utente.nome==='barista')  && data.showModal)">
+    <h1 mat-dialog-title class="text-center">Nuovo Ordine Elaborato</h1>
+    <br />
+    <hr />
+    <div mat-dialog-content>
+        <div class="form-group">
+        </div>
+    </div>
+</div>
+
+
+<!-- DIV ALERT CUOCO E BARISTA QUANDO UN ORDINE VIENE ELABORATO -->
+<div *ngIf="((data.utente.nome==='cuoco')  && showModalCuoco)">
+    <h1 mat-dialog-title class="text-center">Nuova consumazione aggiunta ai seguenti tavoli</h1>
+    <br />
+    <hr />
+    <div mat-dialog-content>
+        <div class="form-group" *ngFor="let element of listaNuoveConsegneCuoco">
+                <li>{{element.tavolo.numero}}</li>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="((data.utente.nome==='barista')  && showModalBarista)">
+    <h1 mat-dialog-title class="text-center">Nuova consumazione aggiunta ai seguenti tavoli</h1>
+    <br />
+    <hr />
+    <div mat-dialog-content>
+        <div class="form-group" *ngFor="let element of listaNuoveConsegneBarista">
+                <li>{{element.tavolo.numero}}</li>
+        </div>
+    </div>
+</div>

@@ -57,10 +57,12 @@ public class OrdineController {
 				ordine.setIdOrdine(idOrdine);
 				consumazioneDAO.save(consumazione);
 			}
-		} else {
+		} else
+		{
 			Ordine ordineSave = ordineDAO.save(ordine);
 			for (Consumazione consumazione : ordine.getConsumazioni()) {
 				consumazione.setOrdine(ordineSave);
+				ordine.setIdOrdine(ordineSave.getIdOrdine());
 				consumazioneDAO.save(consumazione);
 			}
 		}

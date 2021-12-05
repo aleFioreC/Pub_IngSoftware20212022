@@ -1,6 +1,10 @@
 <nav class="navbar">
     <span class="navbar-brand h3" style="color: whitesmoke">Utente {{utente.nome}}</span>
+    <div class="align-right">
+    <button *ngIf="utente.nome=='cameriere'" type="button" class="btn btn-light mr-2"  (click)="ListaOrdinazioni()">Lista Ordinazioni</button>
     <button type="button" class="btn btn-light" (click)="logout()">Logout</button>
+    
+    </div>
 </nav>
 
 <div class="d-flex justify-content-center form_container">

@@ -31,6 +31,10 @@ public class Consumazione {
 		return statoConsumazione;
 	}
 
+	public void setStatoConsumazione(TipologiaStatoOrdine statoConsumazione) {
+		this.statoConsumazione = statoConsumazione;
+	}
+
 	public Integer getIdConsumazione() {
 		return idConsumazione;
 	}

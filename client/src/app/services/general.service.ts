@@ -28,6 +28,10 @@ export class GeneralService {
         return this.httpClient.get('/api/getConsumazioniByIdTavolo/' + idTavolo);
     }
 
+    getConsumazioniByTavoloAdmin(idTavolo: string) {
+        return this.httpClient.get('/api/getConsumazioniByIdTavoloAdmin/' + idTavolo);
+    }
+
     getConsumazioni() {
         return this.httpClient.get('api/allTipologieConsumazioni')
     }
@@ -44,6 +48,20 @@ export class GeneralService {
         return this.httpClient.get('/api/getOrdineByTavolo/' + idTavolo);
     }
 
+    
+
+    getNuovaConsegna() {
+        return this.httpClient.get('/api/getNuovaConsegna');
+    }
+
+    getNuovaConsegnaCuoco() {
+        return this.httpClient.get('/api/getNuovaConsegnaCuoco');
+    }
+
+    getNuovaConsegnaBarista() {
+        return this.httpClient.get('/api/getNuovaConsegnaBarista');
+    }
+
     inserisciOrdine(body: any) {
         return this.httpClient.post('/api/inserisciOrdine', body);
     }
@@ -54,5 +72,21 @@ export class GeneralService {
 
     consegnaProdotto(body: any) {
         return this.httpClient.post('/api/consegnaProdotto', body);
+    }
+
+    updateStatusConsumazioneCucina(idTavolo: any, body: any ) {
+        return this.httpClient.post('/api/updateStatusConsumazioneCucina/' + idTavolo, body);
+    }
+
+    updateStatusConsumazioneBar(idTavolo: any, body: any ) {
+        return this.httpClient.post('/api/updateStatusConsumazioneBar/' + idTavolo, body);
+    }
+
+    updateStatusOrder(idConsumazione: any, body:any) {
+        return this.httpClient.post('/api/updateStatusOrder/' + idConsumazione,body);
+    }
+
+    getConsumazioniPronte() {
+        return this.httpClient.get('/api/getConsumazioniPronte');
     }
 }

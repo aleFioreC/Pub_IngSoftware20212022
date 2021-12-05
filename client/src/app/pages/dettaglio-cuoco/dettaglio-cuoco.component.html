@@ -18,7 +18,7 @@
                 <label for="descrizione" class="col-form-label">Descrizione</label>
             </div>
             <div class="col-sm-2">
-                <label for="prezzo" class="col-form-label">Prezzo</label>
+                <label for="quantita" class="col-form-label">Quantità</label>
             </div>
         </div>
         <div *ngIf="getItems(1).length > 0">
@@ -27,17 +27,17 @@
                     <label for="{{element.idMenu}}" class="col-form-label">{{element.menu.descrizione}}</label>
                 </div>
                 <div class="col-sm-2">
-                    <label for="{{element.idMenu}}" class="col-form-label">&euro; {{element.menu.prezzo}},00</label>
+                    <label for="{{element.idMenu}}" class="col-form-label">{{getOccurrence(element.menu.idMenu)}}</label>
                 </div>
             </div>
         </div>
-        <div *ngIf="getItems(1).length == 0">
+        <div *ngIf="getItems(1).length == 0" class="text-center">
             <div class="form-group row">
-                Nessun risultato
+               <h1>Nessuna ordinazione presente per il tavolo selezionato</h1>
             </div>
         </div>
         <div class="form-group">
-            <button type="submit" id="submit" class="submit-button" *ngIf="getItems(1).length > 0">
+            <button type="submit" id="submit" class="submit-button" (click)="consegnaSnacks()" *ngIf="getItems(1).length > 0">
                 Consegna snack
             </button>
         </div>

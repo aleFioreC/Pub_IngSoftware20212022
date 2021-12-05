@@ -1,0 +1,44 @@
+<nav class="navbar">
+    <span class="navbar-brand h3" style="color: whitesmoke">ORDINAZIONI DA CONSEGNARE AI TAVOLI</span>
+    <div class="align-right">
+        <button type="button" class="btn btn-light mr-2" (click)="back()">Indietro</button>
+        <button type="button" class="btn btn-light" (click)="logout()">Logout</button>
+    </div>
+</nav>
+
+<div class="container">
+    <!-- <header class="header">
+        <h1 id="title" class="text-center">Lista Ordinazioni pronte per la consegna</h1>
+    </header> -->
+    <table class="table-fill text-center" >
+        <thead>
+        <tr>
+        <th class="text-left">Identificativo Ordine</th>
+        <th class="text-left">Provenienza Consumazione</th>
+        <th class="text-left">Numero Tavolo</th>
+        <th class="text-left">Tipologia Tavolo</th>
+        <th class="text-left">Descrizione Consumazione</th>
+        <th class="text-left">Azione</th>
+        </tr>
+        </thead>
+        <tbody class="table-hover" *ngIf="products.length>0">
+        <tr *ngFor="let item of products">
+            <td class="text-left">{{item.ordine.idOrdine}}</td>
+            <td class="text-left">{{item.statoOrdine.idStatoOrdine == 5 ? "BAR" : "CUCINA"}}</td>
+            <td class="text-left">{{item.tavolo.numero}}</td>
+            <td class="text-left">{{item.tavolo.tipologiaTavolo.tipologia}}</td>
+            <td class="text-left">{{item.menu.descrizione}}</td>
+            <td class="text-left">
+            <button class="submit-button" (click)="updateStatusOrder(item.idConsumazione)">
+                    Segna come Consegnato
+            </button>
+        </td>
+        </tr>    
+        </tbody>
+        <tbody class="table-hover" *ngIf="products.length<=0">
+            <tr>
+                <td class="text-center" colspan="6">Nessuna consumazione elaborata al momento</td>
+            </tr>
+            </tbody>
+        </table>
+</div>
