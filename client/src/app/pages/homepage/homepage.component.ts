@@ -18,16 +18,16 @@ export class HomepageComponent implements OnInit {
   tavoli: any[] = []
   numeroTavolo: any;
   timerSubscription: any;
-  nuovaConsegnaCameriere: number= 0;
-  nuovaConsegnaCuoco: number= 0;
+  nuovaConsegnaCameriere: number = 0;
+  nuovaConsegnaCuoco: number = 0;
   listaNuoveConsegneCuoco: any = [];
-  nuovaConsegnaBarista: number= 0;
+  nuovaConsegnaBarista: number = 0;
   listaNuoveConsegneBarista: any = [];
 
 
 
-  constructor(public dialog: MatDialog,private location: Location, private service: GeneralService, private router: Router) {
-    
+  constructor(public dialog: MatDialog, private location: Location, private service: GeneralService, private router: Router) {
+
   }
 
   ngOnInit(): void {
@@ -45,48 +45,41 @@ export class HomepageComponent implements OnInit {
 
   }
 
-  loadData(){ 
-    if (this.utente.nome=="cameriere") 
-    {
+  loadData() {
+    if (this.utente.nome == "cameriere") {
       this.service.getNuovaConsegna().subscribe((res: any) => {
         let consegna = res;
-          if (consegna>this.nuovaConsegnaCameriere) {
-            this.nuovaConsegnaCameriere = consegna;
-            this.openDialog();
-          }                
+        if (consegna > this.nuovaConsegnaCameriere) {
+          this.nuovaConsegnaCameriere = consegna;
+          this.openDialog();
+        }
       })
     }
-    else if(this.utente.nome=="cuoco")
-    {
+    else if (this.utente.nome == "cuoco") {
       this.service.getNuovaConsegnaCuoco().subscribe((res: any) => {
-        if(res!=null)
-        {
+        if (res != null) {
           let consegna = res.length;
           this.listaNuoveConsegneCuoco = res;
-          if (consegna>this.nuovaConsegnaCuoco) 
-          {
+          if (consegna > this.nuovaConsegnaCuoco) {
             this.nuovaConsegnaCuoco = consegna;
             this.openDialog();
-          }     
+          }
         }
-                   
+
       })
     }
-    else if(this.utente.nome=="barista")
-    {
+    else if (this.utente.nome == "barista") {
       this.service.getNuovaConsegnaBarista().subscribe((res: any) => {
-        if(res!=null)
-        {
+        if (res != null) {
           let consegna = res.length;
           this.listaNuoveConsegneBarista = res;
-          if (consegna>this.nuovaConsegnaBarista) 
-          {
+          if (consegna > this.nuovaConsegnaBarista) {
             this.nuovaConsegnaBarista = consegna;
             this.openDialog();
-          }     
-        }                   
+          }
+        }
       })
-    }        
+    }
   }
 
   getDisponibilita(tavolo: number) {
@@ -117,52 +110,48 @@ export class HomepageComponent implements OnInit {
   }
 
   openDialog(): void {
-    if (this.utente.nome=="cameriere") 
-    {
-      const dialogRef = this.dialog.open(DialogComponent, {
-        width: '600px',
-        data: { 
-            utente: this.utente,
-            nuovaConsegna : this.nuovaConsegnaCameriere
-           }
-      });
-      dialogRef.afterClosed().subscribe((res: any) => {    
-      });
-    }
-    else if (this.utente.nome=="cuoco") 
-    {
+    if (this.utente.nome == "cameriere") {
       const dialogRef = this.dialog.open(DialogComponent, {
         width: '600px',
         data: {
-            nuoveConsegneCuoco: this.listaNuoveConsegneCuoco, 
-            utente: this.utente,
-            nuovaConsegna : this.nuovaConsegnaCuoco,
-            isNuovaConsegnaCuoco: true
-           }
+          utente: this.utente,
+          nuovaConsegna: this.nuovaConsegnaCameriere
+        }
       });
-      dialogRef.afterClosed().subscribe((res: any) => {    
+      dialogRef.afterClosed().subscribe((res: any) => {
       });
     }
-    else if (this.utente.nome=="barista") 
-    {
+    else if (this.utente.nome == "cuoco") {
       const dialogRef = this.dialog.open(DialogComponent, {
         width: '600px',
-        data: { 
-            nuoveConsegneBarista: this.listaNuoveConsegneBarista, 
-            utente: this.utente,
-            nuovaConsegna : this.nuovaConsegnaBarista,
-            isNuovaConsegnaBarista: true
-           }
+        data: {
+          nuoveConsegneCuoco: this.listaNuoveConsegneCuoco,
+          utente: this.utente,
+          nuovaConsegna: this.nuovaConsegnaCuoco,
+          isNuovaConsegnaCuoco: true
+        }
       });
-      dialogRef.afterClosed().subscribe((res: any) => {    
+      dialogRef.afterClosed().subscribe((res: any) => {
       });
     }
-        
+    else if (this.utente.nome == "barista") {
+      const dialogRef = this.dialog.open(DialogComponent, {
+        width: '600px',
+        data: {
+          nuoveConsegneBarista: this.listaNuoveConsegneBarista,
+          utente: this.utente,
+          nuovaConsegna: this.nuovaConsegnaBarista,
+          isNuovaConsegnaBarista: true
+        }
+      });
+      dialogRef.afterClosed().subscribe((res: any) => {
+      });
+    }
+
   }
 
-  ListaOrdinazioni()
-  {
-    this.router.navigate(['/listaOrdinazioni']);
+  ListaOrdinazioni() {
+    this.router.navigate(['/listaOrdinazioni'], { state: this.utente });
   }
 
 }

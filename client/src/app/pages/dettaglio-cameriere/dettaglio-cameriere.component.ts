@@ -56,6 +56,10 @@ export class DettaglioCameriereComponent implements OnInit {
     let list: any[] = []
     this.products.forEach((element: any) => {
       while (element.quantita > 0) {
+        if (element.tipologiaConsumazione.idTipologiaConsumazione == 2 && element.quantita > 0 && new Date().getHours() < 18) {
+          this.openDialog(true)
+          return;
+        }
         element.quantita -= 1
         let object: any = {}
         object.idConsumazione = 0
@@ -70,14 +74,14 @@ export class DettaglioCameriereComponent implements OnInit {
       tavolo: this.tavolo
     }
     this.service.inserisciOrdine(ordine).subscribe((res: any) => {
-      this.openDialog()
+      this.openDialog(false)
     })
   }
 
-  openDialog(): void {
+  openDialog(error: boolean): void {
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '450px',
-      data: { utente: this.utente, color: true, tavolo: this.numTavolo }
+      data: { utente: this.utente, color: true, error: error, tavolo: this.numTavolo }
     });
 
     dialogRef.afterClosed().subscribe((res: any) => {
