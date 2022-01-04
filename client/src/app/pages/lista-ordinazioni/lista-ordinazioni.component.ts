@@ -25,7 +25,8 @@ export class ListaOrdinazioniComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.utente =  this.utente = this.location.getState();
+    this.utente = this.location.getState();
+    console.log(this.utente);
     this.fetchOrders(); 
   }
 
@@ -47,8 +48,9 @@ export class ListaOrdinazioniComponent implements OnInit {
   updateStatusOrder(idConsumazione : any)
   {
     this.service.updateStatusOrder(idConsumazione,this.products).subscribe((res: any) => {
+      this.ngOnInit();
     });
-    this.ngOnInit();
+    
   }
 
 

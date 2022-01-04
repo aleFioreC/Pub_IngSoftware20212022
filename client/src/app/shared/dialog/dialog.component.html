@@ -1,4 +1,4 @@
-<div *ngIf="(data.utente.nome==='cameriere' && this.data.color && !this.data.error)">
+<div *ngIf="(this.utenteAttuale==='cameriere' && this.data.color && !this.data.error)">
     <h1 mat-dialog-title>Operazione effettuata con successo</h1>
     <div mat-dialog-content>
         <p>Ordine inviato</p>
@@ -10,7 +10,7 @@
     </div>
 </div>
 
-<div *ngIf="(data.utente.nome==='cameriere' && this.data.color && this.data.error)">
+<div *ngIf="(this.utenteAttuale==='cameriere' && this.data.color && this.data.error)">
     <h1 mat-dialog-title>Errore</h1>
     <div mat-dialog-content>
         <p>Non è possibile ordinare una bevanda alcolica prima delle 18.00</p>
@@ -22,7 +22,7 @@
     </div>
 </div>
 
-<div *ngIf="(data.utente.nome==='admin' && data.color)">
+<div *ngIf="(this.utenteAttuale==='admin' && data.color)">
     <h1 mat-dialog-title>Operazione effettuata con successo</h1>
     <div mat-dialog-content>
         <p>Pagamento effettuato, arrivederci</p>
@@ -34,7 +34,7 @@
     </div>
 </div>
 
-<div *ngIf="(data.utente.nome==='admin' && !data.color)">
+<div *ngIf="(this.utenteAttuale==='admin' && !data.color)">
     <h1 mat-dialog-title class="text-center">PAGAMENTO TAVOLO - {{data.tavolo}}</h1>
     <hr />
     <br />
@@ -66,7 +66,7 @@
 
 
 <!-- DIV ALERT CAMERIERE QUANDO UN ORDINE VIENE ELABORATO DALLA CUCINA E/O DAL BAR -->
-<div *ngIf="(data.utente.nome==='cameriere' && this.showModal)">
+<div *ngIf="(this.utenteAttuale==='cameriere' && this.showModalCameriere)">
     <h1 mat-dialog-title class="text-center">Nuovo Ordine Elaborato</h1>
     <br />
     <hr />
@@ -80,7 +80,7 @@
 </div>
 
 <!-- DIV ALERT CUOCO E BARISTA QUANDO UN ORDINE VIENE INVIATO DAL CAMERIERE -->
-<div *ngIf="((data.utente.nome==='cuoco' || data.utente.nome==='barista')  && data.showModal)">
+<div *ngIf="((this.utenteAttuale==='cuoco' || this.utenteAttuale==='barista')  && this.data.showModal)">
     <h1 mat-dialog-title class="text-center">Nuovo Ordine Elaborato</h1>
     <br />
     <hr />
@@ -92,7 +92,7 @@
 
 
 <!-- DIV ALERT CUOCO E BARISTA QUANDO UN ORDINE VIENE ELABORATO -->
-<div *ngIf="((data.utente.nome==='cuoco')  && showModalCuoco)">
+<div *ngIf="((this.utenteAttuale==='cuoco')  && showModalCuoco)">
     <h1 mat-dialog-title class="text-center">Nuova consumazione aggiunta ai seguenti tavoli</h1>
     <br />
     <hr />
@@ -103,7 +103,7 @@
     </div>
 </div>
 
-<div *ngIf="((data.utente.nome==='barista')  && showModalBarista)">
+<div *ngIf="((this.utenteAttuale==='barista')  && showModalBarista)">
     <h1 mat-dialog-title class="text-center">Nuova consumazione aggiunta ai seguenti tavoli</h1>
     <br />
     <hr />

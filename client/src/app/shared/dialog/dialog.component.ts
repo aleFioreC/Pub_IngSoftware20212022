@@ -3,7 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GeneralService } from 'src/app/services/general.service';
 import { EventEmitter } from 'events';
-
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-dialog',
   templateUrl: './dialog.component.html',
@@ -17,15 +17,18 @@ export class DialogComponent implements OnInit {
   nuovaConsegnaCuoco: number = 0;
   nuovaConsegnaBarista: number = 0;
   showModal: boolean = false;
+  showModalCameriere: boolean = false;
   showModalBarista: boolean = false;
   showModalCuoco: boolean = false;
   color: boolean = true;
   listaNuoveConsegneCuoco: any = [];
   listaNuoveConsegneBarista: any = [];
+  utente: any;
+  utenteAttuale : any;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    public dialogRef: MatDialogRef<DialogComponent>, private service: GeneralService, private router: Router) { }
+    public dialogRef: MatDialogRef<DialogComponent>, private service: GeneralService, private location: Location, private router: Router) { }
 
   close(): void {
     if (this.data.error) {
@@ -36,22 +39,35 @@ export class DialogComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.data.utente.nome == "admin") {
-      if (this.data.tavolo !== undefined && this.data.tavolo !== null) {
+    this.utente = this.location.getState();
+    if (this.utente.nome === "admin") 
+    {
+      this.utenteAttuale = "admin";
+      if (this.data.tavolo !== undefined && this.data.tavolo !== null) 
+      {
         this.service.getOrdine(this.data.tavolo).subscribe((res: any) => {
           this.ordine = res
         })
       }
+      this.color = this.data.color;
     }
-    else if (this.data.utente.nome == "cameriere") {
-      if (this.data.nuovaConsegna > this.nuovaConsegna) {
+    else if (this.utente.nome === "cameriere") 
+    {
+      this.utenteAttuale = "cameriere";
+      if (this.data.nuovaConsegna > this.nuovaConsegna) 
+      {
         this.nuovaConsegna = this.data.nuovaConsegna;
-        this.showModal = true;
+        this.showModalCameriere = this.data.isNuovaConsegnaCameriere;
       }
+      this.color = this.data.color;
     }
-    else if (this.data.utente.nome == "cuoco") {
-      if (this.data.nuoveConsegneCuoco != null) {
-        if (this.data.nuovaConsegna > this.nuovaConsegnaCuoco) {
+    else if (this.utente.nome === "cuoco") 
+    {
+      this.utenteAttuale = "cuoco";
+      if (this.data.nuoveConsegneCuoco != null) 
+      {
+        if (this.data.nuovaConsegna > this.nuovaConsegnaCuoco) 
+        {
           this.nuovaConsegnaCuoco = this.data.nuovaConsegna;
           this.showModalCuoco = this.data.isNuovaConsegnaCuoco;
           this.listaNuoveConsegneCuoco = this.data.nuoveConsegneCuoco.reduce((unique: any, o: any) => {
@@ -63,8 +79,8 @@ export class DialogComponent implements OnInit {
         }
       }
     }
-
-    else if (this.data.utente.nome == "barista") {
+    else if (this.utente.nome === "barista") {
+      this.utenteAttuale = "barista";
       if (this.data.nuoveConsegneBarista != null) {
         if (this.data.nuovaConsegna > this.nuovaConsegnaBarista) {
           this.nuovaConsegnaBarista = this.data.nuovaConsegna;
@@ -78,7 +94,7 @@ export class DialogComponent implements OnInit {
         }
       }
     }
-    this.color = this.data.color;
+    
   }
 
   inviaPagamento() {
@@ -88,7 +104,7 @@ export class DialogComponent implements OnInit {
   }
 
   showLista() {
-    this.router.navigate(['/listaOrdinazioni']);
+    this.router.navigate(['/listaOrdinazioni'],{ state: this.utente });
     this.dialogRef.close();
   }
 

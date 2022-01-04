@@ -86,6 +86,7 @@ export class DettaglioCameriereComponent implements OnInit {
   }
 
   openDialog(error: boolean): void {
+    
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '450px',
       data: { utente: this.utente, color: true, error: error, tavolo: this.numTavolo }

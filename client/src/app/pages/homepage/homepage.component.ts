@@ -41,23 +41,27 @@ export class HomepageComponent implements OnInit {
         this.loadData();
       })
     ).subscribe();
-
-
   }
 
-  loadData() {
-    if (this.utente.nome == "cameriere") {
+  loadData() 
+  {
+    if (this.utente.nome === "cameriere") {
       this.service.getNuovaConsegna().subscribe((res: any) => {
-        let consegna = res;
-        if (consegna > this.nuovaConsegnaCameriere) {
-          this.nuovaConsegnaCameriere = consegna;
-          this.openDialog();
+        if(res!=null)
+        {
+          let consegna = res;
+          if (consegna > this.nuovaConsegnaCameriere) 
+          {
+            this.nuovaConsegnaCameriere = consegna;
+            this.openDialog();
+          }
         }
       })
     }
-    else if (this.utente.nome == "cuoco") {
+    else if (this.utente.nome === "cuoco") {
       this.service.getNuovaConsegnaCuoco().subscribe((res: any) => {
-        if (res != null) {
+        if (res != null) 
+        {
           let consegna = res.length;
           this.listaNuoveConsegneCuoco = res;
           if (consegna > this.nuovaConsegnaCuoco) {
@@ -65,10 +69,10 @@ export class HomepageComponent implements OnInit {
             this.openDialog();
           }
         }
-
       })
     }
-    else if (this.utente.nome == "barista") {
+    else if (this.utente.nome === "barista") 
+    {
       this.service.getNuovaConsegnaBarista().subscribe((res: any) => {
         if (res != null) {
           let consegna = res.length;
@@ -87,7 +91,7 @@ export class HomepageComponent implements OnInit {
   }
 
   logout() {
-    this.router.navigate(['/'])
+    window.location.href = "http://localhost:4200/";
   }
 
   showDetails(user: string, numTavolo: number) {
@@ -110,18 +114,21 @@ export class HomepageComponent implements OnInit {
   }
 
   openDialog(): void {
-    if (this.utente.nome == "cameriere") {
+    if (this.utente.nome === "cameriere") 
+    {
       const dialogRef = this.dialog.open(DialogComponent, {
         width: '600px',
         data: {
           utente: this.utente,
-          nuovaConsegna: this.nuovaConsegnaCameriere
+          nuovaConsegna: this.nuovaConsegnaCameriere,
+          isNuovaConsegnaCameriere: true
         }
       });
       dialogRef.afterClosed().subscribe((res: any) => {
       });
     }
-    else if (this.utente.nome == "cuoco") {
+    else if (this.utente.nome === "cuoco") 
+    {
       const dialogRef = this.dialog.open(DialogComponent, {
         width: '600px',
         data: {
@@ -134,7 +141,8 @@ export class HomepageComponent implements OnInit {
       dialogRef.afterClosed().subscribe((res: any) => {
       });
     }
-    else if (this.utente.nome == "barista") {
+    else if (this.utente.nome === "barista") 
+    {
       const dialogRef = this.dialog.open(DialogComponent, {
         width: '600px',
         data: {
