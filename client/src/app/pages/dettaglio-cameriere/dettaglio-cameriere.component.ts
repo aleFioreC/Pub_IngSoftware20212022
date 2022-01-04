@@ -54,28 +54,35 @@ export class DettaglioCameriereComponent implements OnInit {
 
   inserisciOrdine() {
     let list: any[] = []
+    let res = true;
     this.products.forEach((element: any) => {
-      while (element.quantita > 0) {
-        if (element.tipologiaConsumazione.idTipologiaConsumazione == 2 && element.quantita > 0 && new Date().getHours() < 18) {
-          this.openDialog(true)
-          return;
+      if (res) {
+        while (element.quantita > 0) {
+          if (element.tipologiaConsumazione.idTipologiaConsumazione == 2 && element.quantita > 0 && new Date().getHours() < 18) {
+            this.openDialog(true)
+            res = false
+            element.quantita = 0
+            break;
+          }
+          element.quantita -= 1
+          let object: any = {}
+          object.idConsumazione = 0
+          object.ordine = null
+          object.menu = element
+          list.push(object)
         }
-        element.quantita -= 1
-        let object: any = {}
-        object.idConsumazione = 0
-        object.ordine = null
-        object.menu = element
-        list.push(object)
       }
     });
-    let ordine = {
-      consumazioni: list,
-      statoOrdine: this.tipologiaStatoOrdine.filter((elemento: any) => elemento.idStatoOrdine == 1)[0],
-      tavolo: this.tavolo
+    if (res) {
+      let ordine = {
+        consumazioni: list,
+        statoOrdine: this.tipologiaStatoOrdine.filter((elemento: any) => elemento.idStatoOrdine == 1)[0],
+        tavolo: this.tavolo
+      }
+      this.service.inserisciOrdine(ordine).subscribe((res: any) => {
+        this.openDialog(false)
+      })
     }
-    this.service.inserisciOrdine(ordine).subscribe((res: any) => {
-      this.openDialog(false)
-    })
   }
 
   openDialog(error: boolean): void {
@@ -85,8 +92,9 @@ export class DettaglioCameriereComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((res: any) => {
-      this.color = res;
-      this.back();
+      if (res) {
+        this.back();
+      }
     });
   }
 

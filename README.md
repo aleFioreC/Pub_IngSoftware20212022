@@ -1,6 +1,10 @@
 # Pub_IngSoftware20212022
 Realizzazione webapp per gestione di un pub con Angular e Java
 
+TRUNCATE consumazione;
+SET FOREIGN_KEY_CHECKS = 0;
+TRUNCATE ordine;
+
 Passaggi da eseguire per l'installazione:
 
 Clone da git

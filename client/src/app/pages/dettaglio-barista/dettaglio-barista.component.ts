@@ -17,7 +17,7 @@ export class DettaglioBaristaComponent implements OnInit {
   public listaFiltered: any = [];
   utente: any;
 
-  constructor(public dialog: MatDialog,private location: Location, private route: ActivatedRoute, private router: Router, private service: GeneralService) {
+  constructor(public dialog: MatDialog, private location: Location, private route: ActivatedRoute, private router: Router, private service: GeneralService) {
   }
 
   ngOnInit(): void {
@@ -25,7 +25,6 @@ export class DettaglioBaristaComponent implements OnInit {
     this.utente = this.location.getState();
     this.service.getConsumazioniByTavolo(this.numTavolo).subscribe((res: any) => {
       this.products = res
-      console.log(this.products)
     })
   }
 
@@ -38,31 +37,30 @@ export class DettaglioBaristaComponent implements OnInit {
   }
 
   getItems(id: number) {
-    if (this.products.statoConsumazione==null) {
+    if (this.products.statoConsumazione == null) {
       var listaFiltrata = this.products.filter((item: any) => item.menu.tipologiaConsumazione.idTipologiaConsumazione == id);
     }
-    else
-    {
+    else {
       var listaFiltrata = this.products.filter((item: any) => item.menu.tipologiaConsumazione.idTipologiaConsumazione == id
-      && item.statoConsumazione.idStatoOrdine!=2);
+        && item.statoConsumazione.idStatoOrdine != 2);
     }
 
-    this.listaFiltered = listaFiltrata;  
+    this.listaFiltered = listaFiltrata;
     var result = listaFiltrata.reduce((unique: any, o: any) => {
-      if(!unique.some(((obj: any) => obj.menu.idmenu === o.menu.idmenu && obj.menu.descrizione ===o.menu.descrizione ))) {
+      if (!unique.some(((obj: any) => obj.menu.idmenu === o.menu.idmenu && obj.menu.descrizione === o.menu.descrizione))) {
         unique.push(o);
       }
       return unique;
-  },[]);
+    }, []);
     return result
   }
 
-  
-  getOccurrence(value :any) {
+
+  getOccurrence(value: any) {
     var list = this.products
-    var count = list.filter((item: any) => item.menu.idMenu==value).length
+    var count = list.filter((item: any) => item.menu.idMenu == value).length
     return count;
-}
+  }
 
   consegnaBevande() {
     let consumazione = this.products;
