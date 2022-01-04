@@ -3,6 +3,11 @@
     <div mat-dialog-content>
         <p>Ordine inviato</p>
     </div>
+    <div class="form-group">
+        <button class="submit-button" (click)="close()">
+            Chiudi
+        </button>
+    </div>
 </div>
 
 <div *ngIf="(data.utente.nome==='cameriere' && this.data.color && this.data.error)">
@@ -10,12 +15,22 @@
     <div mat-dialog-content>
         <p>Non è possibile ordinare una bevanda alcolica prima delle 18.00</p>
     </div>
+    <div class="form-group">
+        <button class="submit-button" (click)="close()">
+            Chiudi
+        </button>
+    </div>
 </div>
 
 <div *ngIf="(data.utente.nome==='admin' && data.color)">
     <h1 mat-dialog-title>Operazione effettuata con successo</h1>
     <div mat-dialog-content>
         <p>Pagamento effettuato, arrivederci</p>
+    </div>
+    <div class="form-group">
+        <button class="submit-button" (click)="close()">
+            Chiudi
+        </button>
     </div>
 </div>
 

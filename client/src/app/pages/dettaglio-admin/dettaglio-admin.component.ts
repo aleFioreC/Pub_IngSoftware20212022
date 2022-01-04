@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { GeneralService } from 'src/app/services/general.service';
 import { Location } from '@angular/common';
@@ -23,7 +23,6 @@ export class DettaglioAdminComponent implements OnInit {
   color: any;
   totale: any;
 
-
   constructor(public dialog: MatDialog, private location: Location, private route: ActivatedRoute, private router: Router, private service: GeneralService) {
   }
 
@@ -45,23 +44,23 @@ export class DettaglioAdminComponent implements OnInit {
 
   getItems(id: number) {
     var listaFiltrata = this.products.filter((item: any) => item.menu.tipologiaConsumazione.idTipologiaConsumazione == id);
-    
-    this.listaFiltered = listaFiltrata;  
+
+    this.listaFiltered = listaFiltrata;
     var result = listaFiltrata.reduce((unique: any, o: any) => {
-      if(!unique.some(((obj: any) => obj.menu.idmenu === o.menu.idmenu && obj.menu.descrizione ===o.menu.descrizione ))) {
+      if (!unique.some(((obj: any) => obj.menu.idmenu === o.menu.idmenu && obj.menu.descrizione === o.menu.descrizione))) {
         unique.push(o);
       }
       return unique;
-  },[]);
+    }, []);
     return result
   }
 
-  
-  getOccurrence(value :any) {
+
+  getOccurrence(value: any) {
     var list = this.products
-    var count = list.filter((item: any) => item.menu.idMenu==value).length
+    var count = list.filter((item: any) => item.menu.idMenu == value).length
     return count;
-}
+  }
 
 
   openDialog(): void {
@@ -76,7 +75,9 @@ export class DettaglioAdminComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((res: any) => {
-      this.openDialogConfirm()
+      if (res) {
+        this.openDialogConfirm()
+      }
     });
   }
 
@@ -89,7 +90,7 @@ export class DettaglioAdminComponent implements OnInit {
 
     return contoTotale;
   }
-  
+
 
   openDialogConfirm(): void {
     const dialogRef = this.dialog.open(DialogComponent, {
@@ -98,12 +99,11 @@ export class DettaglioAdminComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((res: any) => {
-      this.color = res;
       this.back();
     });
   }
 
-  
+
 
 
 }
