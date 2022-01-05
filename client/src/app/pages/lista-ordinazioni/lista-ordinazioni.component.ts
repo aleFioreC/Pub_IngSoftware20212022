@@ -26,8 +26,7 @@ export class ListaOrdinazioniComponent implements OnInit {
 
   ngOnInit(): void {
     this.utente = this.location.getState();
-    console.log(this.utente);
-    this.fetchOrders(); 
+    this.fetchOrders();
   }
 
   logout() {
@@ -38,19 +37,17 @@ export class ListaOrdinazioniComponent implements OnInit {
     this.router.navigate(['/private'], { state: this.utente })
   }
 
-  fetchOrders()
-  {
+  fetchOrders() {
     this.service.getConsumazioniPronte().subscribe((res: any) => {
       this.products = res
     })
   }
 
-  updateStatusOrder(idConsumazione : any)
-  {
-    this.service.updateStatusOrder(idConsumazione,this.products).subscribe((res: any) => {
+  updateStatusOrder(idConsumazione: any) {
+    this.service.updateStatusOrder(idConsumazione, this.products).subscribe((res: any) => {
       this.ngOnInit();
     });
-    
+
   }
 
 
