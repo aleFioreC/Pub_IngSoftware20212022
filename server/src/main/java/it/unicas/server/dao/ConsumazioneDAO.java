@@ -2,7 +2,6 @@ package it.unicas.server.dao;
 
 import java.util.List;
 
-import it.unicas.server.model.ConsumazioniPronte;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
@@ -18,7 +17,7 @@ public interface ConsumazioneDAO extends CrudRepository<Consumazione, Integer> {
 	@Query("FROM Consumazione o WHERE o.ordine = ?1 AND ((o.statoConsumazione is NULL)) ")
 	List<Consumazione> findByOrdine(Ordine ordine);
 
-	@Query("FROM Consumazione o WHERE o.ordine = ?1 ")
+	@Query("FROM Consumazione o WHERE o.ordine = ?1 AND ((o.statoConsumazione.descrizione is 'Consegnato'))")
 	List<Consumazione> findByOrdineAdmin(Ordine ordine);
 
 	@Query("SELECT COUNT (c.idConsumazione) FROM Consumazione c WHERE c.statoConsumazione is not  null AND c.statoConsumazione.idStatoOrdine <> 2 ")
